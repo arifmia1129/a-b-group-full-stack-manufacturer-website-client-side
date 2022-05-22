@@ -13,6 +13,7 @@ const Products = () => {
     }, [])
     return (
         <div>
+            <h3 className='font-bold text-primary text-2xl mb-2'>Our Products:</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 bg-base-200 md:p-5 p-2 rounded-lg'>
                 {
                     products.map(product => <Product
