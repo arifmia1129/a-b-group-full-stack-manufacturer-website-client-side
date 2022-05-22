@@ -4,6 +4,7 @@ import Cards from './Cards';
 import HomeBanner from './HomeBanner';
 import Products from './Products';
 import Reviews from './Reviews';
+import UserSubscribe from './UserSubscribe';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Products />
             <BusinessSummary />
             <Reviews />
+            <UserSubscribe />
         </div>
     );
 };

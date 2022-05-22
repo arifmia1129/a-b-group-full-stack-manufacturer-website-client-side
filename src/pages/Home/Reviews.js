@@ -1,5 +1,5 @@
 import React from 'react';
-import Marquee, { Motion, randomIntFromInterval } from "react-marquee-slider";
+import Marquee from "react-marquee-slider";
 import Review from './Review';
 
 const Reviews = () => {

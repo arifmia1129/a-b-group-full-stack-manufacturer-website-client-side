@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BiPurchaseTag } from "react-icons/bi";
 const Product = ({ product }) => {
     const { img, name, des, minimum, quantity, price } = product;
     return (
@@ -14,7 +14,10 @@ const Product = ({ product }) => {
                     <p><span className='font-bold'>Price:</span> {price}(per product)</p>
                 </div>
                 <div class="card-actions">
-                    <button class="btn bg-gradient-to-r from-secondary to-primary w-full border-0 text-white">Buy Now</button>
+                    <button class="btn bg-gradient-to-r from-secondary to-primary w-full border-0 text-white">
+                        Purchase Now
+                        <BiPurchaseTag className='text-xl ml-1' />
+                    </button>
                 </div>
             </div>
         </div>
