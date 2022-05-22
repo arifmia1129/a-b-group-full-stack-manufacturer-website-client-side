@@ -1,14 +1,14 @@
 import React from 'react';
 import { BiRightArrow } from 'react-icons/bi';
 const Card = ({ card }) => {
-
+    const { color, title, description } = card;
     return (
-        <div class={`card bg-${card.color} text-white`}>
+        <div class={`card bg-${color} text-white`}>
             <div class="card-body">
                 <h2 class="card-title text-2xl font-bold">
                     <BiRightArrow />
-                    {card.title}</h2>
-                <p>{card.description}</p>
+                    {title}</h2>
+                <p>{description}</p>
             </div>
         </div>
     );

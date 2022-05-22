@@ -8,7 +8,7 @@ const Cards = () => {
         { _id: 1, title: "Money Back Guarantee", description: "If you find any defects in our products, we will refund you immediately without any condition. So you can safely take any of our products.", color: "accent" },
     ]
     return (
-        <div>
+        <div className='my-20'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                 {
                     cards.map(card => <Card
