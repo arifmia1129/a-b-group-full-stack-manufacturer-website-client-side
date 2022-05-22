@@ -1,14 +1,14 @@
 import React from 'react';
+import { BiRightArrow } from 'react-icons/bi';
+const Card = ({ card }) => {
 
-const Card = ({ card, color }) => {
     return (
-        <div class={`card bg-${color} text-primary-content`}>
+        <div class={`card bg-${card.color} text-white`}>
             <div class="card-body">
-                <h2 class="card-title">Card title!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div class="card-actions justify-end">
-                    <button class="btn">Buy Now</button>
-                </div>
+                <h2 class="card-title text-2xl font-bold">
+                    <BiRightArrow />
+                    {card.title}</h2>
+                <p>{card.description}</p>
             </div>
         </div>
     );
