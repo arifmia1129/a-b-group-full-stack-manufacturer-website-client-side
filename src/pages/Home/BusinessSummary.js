@@ -5,8 +5,8 @@ import { MdReviews } from "react-icons/md";
 const BusinessSummary = () => {
     return (
         <div className='my-10'>
-            <h3 className='font-bold text-primary text-2xl mb-2'>Our Products:</h3>
-            <div className='grid md:grid-col-3 gap-5 grid-col-1'>
+            <h3 className='font-bold text-primary text-2xl mb-2'>Summary:</h3>
+            <div className='grid'>
                 <div class="stats stats-vertical lg:stats-horizontal shadow">
 
                     <div class="stat mx-auto flex justify-around items-center">

@@ -8,7 +8,6 @@ const Navbar = ({ children }) => {
             <div class="drawer-content flex flex-col">
 
                 <div class="w-full navbar sticky top-0 z-50 bg-base-100 p-2">
-
                     <div class="flex-1 px-2 mx-2 text-2xl font-bold text-secondary">A&B Group</div>
                     <div class="flex-none hidden lg:block">
                         <ul class="menu menu-horizontal">
