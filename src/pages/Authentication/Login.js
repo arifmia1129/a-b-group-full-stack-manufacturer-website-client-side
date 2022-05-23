@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Spinner from '../Shared/Spinner';
 
@@ -39,6 +40,7 @@ const Login = () => {
     const resetPass = async () => {
         const email = await emailRef?.current?.value
         await sendPasswordResetEmail(email);
+        toast.success("Email send for password reset!")
     }
     return (
         <div className='mt-10'>
@@ -91,12 +93,14 @@ const Login = () => {
                                 <span class="label-text-alt text-red-500">
                                     {errors?.password?.message}
                                 </span>
-
+                                <span>
+                                    <button onClick={resetPass} class="text-primary font-bold">
+                                        <small>Password reset?</small>
+                                    </button>
+                                </span>
                             </label>
                         </div>
-                        <button onClick={resetPass} class="text-primary font-bold">
-                            Password reset?
-                        </button>
+
                         <div>
                             {
                                 errorMessage && <label class="label">

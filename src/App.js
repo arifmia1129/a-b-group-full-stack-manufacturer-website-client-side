@@ -4,6 +4,9 @@ import Login from './pages/Authentication/Login';
 import Register from './pages/Authentication/Register';
 import Home from './pages/Home/Home';
 import Navbar from "./pages/Shared/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 function App() {
   return (
     <div className='max-w-7xl mx-auto px-2'>
@@ -14,6 +17,17 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Navbar>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+      />
     </div>
   );
 }
