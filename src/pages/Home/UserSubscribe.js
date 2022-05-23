@@ -27,6 +27,9 @@ const UserSubscribe = () => {
                         <input type="text" placeholder="phone" class="input input-bordered" />
                     </div>
                     <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Message</span>
+                        </label>
                         <textarea class="textarea textarea-bordered" placeholder="message"></textarea>
                     </div>
 

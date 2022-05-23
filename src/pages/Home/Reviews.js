@@ -1,11 +1,9 @@
 import React from 'react';
-import Marquee from "react-marquee-slider";
+import Marquee from 'react-fast-marquee';
 import Review from './Review';
 
 const Reviews = () => {
     const reviews = [
-        { _id: 1, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
-        { _id: 1, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
         { _id: 1, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
         { _id: 2, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
         { _id: 3, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
@@ -16,6 +14,8 @@ const Reviews = () => {
         { _id: 8, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
         { _id: 9, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
         { _id: 10, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
+        { _id: 11, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
+        { _id: 12, reviewer: "Arif", reviewText: "Good product. So you will try with them. Thank you." },
     ]
     const newReviews = [];
     let n = 6;
@@ -30,7 +30,7 @@ const Reviews = () => {
     return (
         <div className='my-10'>
             <h3 className='font-bold text-primary text-2xl mb-2'>Customer Reviews:</h3>
-            <Marquee>
+            <Marquee gradient={false}>
                 {
                     newReviews.map((review, index) => <Review
                         key={review._id}

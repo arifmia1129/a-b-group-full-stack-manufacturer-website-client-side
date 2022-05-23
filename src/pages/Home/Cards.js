@@ -5,7 +5,7 @@ const Cards = () => {
     const cards = [
         { _id: 1, title: "Quality Product", description: "We have no compromise with quality. That's why we only give you 100% quality products.", color: "bg-primary" },
         { _id: 2, title: "Certified", description: "All our products are certified by the Bangladesh University of Engineering and Technology (BUET). In this way, there is no possibility of any defect in our product.", color: "bg-secondary" },
-        { _id: 1, title: "Money Back Guarantee", description: "If you find any defects in our products, we will refund you immediately without any condition. So you can safely take any of our products.", color: "bg-accent" },
+        { _id: 3, title: "Money Back Guarantee", description: "If you find any defects in our products, we will refund you immediately without any condition. So you can safely take any of our products.", color: "bg-accent" },
     ]
     return (
         <div className='mt-36 mb-10 lg:my-10'>
