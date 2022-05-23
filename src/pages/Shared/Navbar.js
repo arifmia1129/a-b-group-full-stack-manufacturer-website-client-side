@@ -3,11 +3,15 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import auth from "../../firebase.init";
+import Spinner from './Spinner';
 
 const Navbar = ({ children }) => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
+    }
+    if (loading) {
+        return <Spinner />
     }
     return (
         <div class="drawer drawer-end">
@@ -23,10 +27,13 @@ const Navbar = ({ children }) => {
                             <li><NavLink to="/about" className={({ isActive }) =>
                                 isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>About</NavLink></li>
                             {
-                                user ? <button
-                                    onClick={() => logout()}
-                                    className='btn btn-primary text-white mx-2'>Sign Out</button> : <li><NavLink to="/login" className={({ isActive }) =>
-                                        isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Login</NavLink>
+                                user ? <>
+                                    <button
+                                        onClick={() => logout()}
+                                        className='btn btn-primary text-white mx-2'>Sign Out</button>
+                                    <p className='my-auto border-2 p-1 rounded-lg'>{user?.displayName}</p>
+                                </> : <li><NavLink to="/login" className={({ isActive }) =>
+                                    isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Login</NavLink>
                                 </li>
                             }
                         </ul>
