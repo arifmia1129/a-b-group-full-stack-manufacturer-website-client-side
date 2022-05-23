@@ -1,7 +1,14 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
+import auth from "../../firebase.init";
 
 const Navbar = ({ children }) => {
+    const [user, loading, error] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+    }
     return (
         <div class="drawer drawer-end">
             <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
@@ -15,8 +22,13 @@ const Navbar = ({ children }) => {
                                 isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Home</NavLink></li>
                             <li><NavLink to="/about" className={({ isActive }) =>
                                 isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>About</NavLink></li>
-                            <li><NavLink to="/login" className={({ isActive }) =>
-                                isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Login</NavLink></li>
+                            {
+                                user ? <button
+                                    onClick={() => logout()}
+                                    className='btn btn-primary text-white mx-2'>Sign Out</button> : <li><NavLink to="/login" className={({ isActive }) =>
+                                        isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Login</NavLink>
+                                </li>
+                            }
                         </ul>
                     </div>
                     <div class="flex-none lg:hidden">

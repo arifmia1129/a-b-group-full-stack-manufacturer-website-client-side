@@ -1,56 +1,38 @@
 import React from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import Spinner from '../Shared/Spinner';
 
-const Register = () => {
+const Login = () => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [
-        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
+    ] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    if (user) {
-        console.log(user);
+    if (loading || gLoading) {
+        return <Spinner />
     }
-    const onSubmit = async data => {
-        const { name, email, password } = data;
-        await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName: name });
+    if (user || gUser) {
+        console.log(user || gUser);
+    }
+
+    const onSubmit = data => {
+        const { email, password } = data;
+        signInWithEmailAndPassword(email, password);
         reset();
     };
     return (
         <div className='mt-10'>
             <div class="card w-full lg:w-96 mx-auto shadow-xl">
                 <div class="card-body p-3 md:p-10">
-                    <h3 className="text-2xl text-primary font-bold text-center">Register</h3>
-
-
+                    <h3 className="text-2xl text-primary font-bold text-center">Login</h3>
                     <form onSubmit={handleSubmit(onSubmit)}>
-
-                        <div class="form-control  max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Name</span>
-                            </label>
-                            <input
-                                {...register("name", {
-                                    required: {
-                                        value: true,
-                                        message: 'Name field is required'
-                                    }
-                                })}
-                                type="text" placeholder="Enter your full name" class="input input-bordered  max-w-xs" />
-                            <label class="label">
-                                <span class="label-text-alt text-red-500">
-                                    {errors?.name?.message}
-                                </span>
-                            </label>
-                        </div>
                         <div class="form-control  max-w-xs">
                             <label class="label">
                                 <span class="label-text">Email</span>
@@ -97,7 +79,7 @@ const Register = () => {
                             </label>
                         </div>
 
-                        <input className='input input-bordered w-full max-w-xs btn bg-gradient-to-r from-secondary to-primary cursor-pointer text-white border-0' type="submit" value="Register" />
+                        <input className='input input-bordered w-full max-w-xs btn bg-gradient-to-r from-secondary to-primary cursor-pointer text-white border-0' type="submit" value="Login" />
                     </form>
                     <div class="divider">OR</div>
                     <button
@@ -109,4 +91,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;
