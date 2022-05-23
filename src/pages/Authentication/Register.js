@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [
@@ -99,6 +100,7 @@ const Register = () => {
 
                         <input className='input input-bordered w-full max-w-xs btn bg-gradient-to-r from-secondary to-primary cursor-pointer text-white border-0' type="submit" value="Register" />
                     </form>
+                    <p className='text-center'><small>Already have an account? <Link to="/login"><span className='text-primary font-bold'>Login now!</span></Link></small></p>
                     <div class="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
