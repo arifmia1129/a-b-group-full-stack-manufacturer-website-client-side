@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Spinner from '../Shared/Spinner';
@@ -22,15 +22,25 @@ const Login = () => {
     let errorMessage;
     const emailRef = useRef("");
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (user || gUser) {
+            navigate(from, { replace: true });
+        }
+    }, [from, user, gUser, navigate])
+
     if (error || gError || rError) {
         errorMessage = <p className='text-red-500'>{error?.message.split(":")[1] || gError?.message.split(":")[1] || rError?.message.split(":")[1]}</p>
     }
+
+
     if (loading || gLoading || sending) {
         return <Spinner />
     }
-    if (user || gUser) {
-        console.log(user || gUser);
-    }
+
 
     const onSubmit = data => {
         const { email, password } = data;

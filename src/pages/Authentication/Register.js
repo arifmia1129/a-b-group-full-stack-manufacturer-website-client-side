@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Spinner from '../Shared/Spinner';
 
 const Register = () => {
     const [
         createUserWithEmailAndPassword,
         user,
-        loading,
-        error,
+        loading
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
+    const [signInWithGoogle, gUser, gLoading] = useSignInWithGoogle(auth);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    if (user) {
-        console.log(user);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user || gUser) {
+            navigate("/");
+        }
+    }, [user, gUser, navigate])
+
+    if (loading || gLoading || updating) {
+        return <Spinner />
     }
+
     const onSubmit = async data => {
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password);

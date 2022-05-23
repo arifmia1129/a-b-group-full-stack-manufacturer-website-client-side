@@ -1,7 +1,9 @@
 import React from 'react';
 import { BiPurchaseTag } from "react-icons/bi";
+import { useNavigate } from 'react-router-dom';
 const Product = ({ product }) => {
-    const { img, name, des, minimum, quantity, price } = product;
+    const { img, name, des, minimum, quantity, price, _id } = product;
+    const navigate = useNavigate();
     return (
         <div class="card bg-base-100 shadow-xl">
             <figure><img className='w-full h-80' src={img} alt="Shoes" /></figure>
@@ -14,7 +16,7 @@ const Product = ({ product }) => {
                     <p><span className='font-bold'>Price:</span> {price}(per product)</p>
                 </div>
                 <div class="card-actions">
-                    <button class="btn bg-gradient-to-r from-secondary to-primary w-full border-0 text-white">
+                    <button onClick={() => navigate(`/purchase/${_id}`)} class="btn bg-gradient-to-r from-secondary to-primary w-full border-0 text-white">
                         Purchase Now
                         <BiPurchaseTag className='text-xl ml-1' />
                     </button>
