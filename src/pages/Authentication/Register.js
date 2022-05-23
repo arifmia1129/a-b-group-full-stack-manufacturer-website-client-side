@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Register = () => {
@@ -10,14 +10,19 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-
+    const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const onSubmit = data => {
+
+    if (user) {
+        console.log(user);
+    }
+    const onSubmit = async data => {
         const { name, email, password } = data;
-        createUserWithEmailAndPassword(email, password)
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
         reset();
-        console.log(data)
+        console.log(data);
     };
     return (
         <div className='mt-10'>
