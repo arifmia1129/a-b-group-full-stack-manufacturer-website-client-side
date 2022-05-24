@@ -1,1 +1,56 @@
-[{"_id":1,"name":"Hammer","img":"https://i.ibb.co/DPB46Yz/hammer.jpg","des":"Our hammer is made of pure metal. Which is long lasting. Currently our hammer is at the top of popularity.","minimum":100,"quantity":1000,"price":100},{"_id":2,"name":"Drill Machine","img":"https://i.ibb.co/JKPm6F1/drill-machine.jpg","des":"Made of perfect material, verified by mechanical engineer. This drill machine is the best in quality.","minimum":50,"quantity":800,"price":300},{"_id":3,"name":"Nut Bolts","img":"https://i.ibb.co/3r1WFJf/bolts.jpg","des":"Made of high quality and pure iron. Which is strong and lasts a long time. There is no fear of rust.","minimum":500,"quantity":2000,"price":50},{"_id":4,"name":"Hacksaw","img":"https://i.ibb.co/Pgz2Mhc/hacksaw.jpg","des":"A world-class saw made of thin, strong and pure metal and iron that can be easily cut. Which is chronic.","minimum":150,"quantity":1200,"price":150},{"_id":5,"name":"Measuring Tape","img":"https://i.ibb.co/ygKwzb3/Measuring-Tape.jpg","des":"Thin, durable tape. Which can be easily and accurately measured. Not likely to be wrong. Long lasting.","minimum":200,"quantity":1000,"price":180},{"_id":6,"name":"Pliers","img":"https://i.ibb.co/gWJLDCJ/Pliers.jpg","des":"Extremely strong, durable, easily portable. By which cable etc. can be cut very easily.","minimum":300,"quantity":1500,"price":150}]
+[
+    {
+        "_id": 1,
+        "name": "Hammer",
+        "img": "https://i.ibb.co/DPB46Yz/hammer.jpg",
+        "des": "Our hammer is made of pure metal. Which is long lasting. Currently our hammer is at the top of popularity.",
+        "minimum": 100,
+        "quantity": 1000,
+        "price": 100
+    },
+    {
+        "_id": 2,
+        "name": "Drill Machine",
+        "img": "https://i.ibb.co/JKPm6F1/drill-machine.jpg",
+        "des": "Made of perfect material, verified by mechanical engineer. This drill machine is the best in quality.",
+        "minimum": 50,
+        "quantity": 800,
+        "price": 300
+    },
+    {
+        "_id": 3,
+        "name": "Nut Bolts",
+        "img": "https://i.ibb.co/3r1WFJf/bolts.jpg",
+        "des": "Made of high quality and pure iron. Which is strong and lasts a long time. There is no fear of rust.",
+        "minimum": 500,
+        "quantity": 2000,
+        "price": 50
+    },
+    {
+        "_id": 4,
+        "name": "Hacksaw",
+        "img": "https://i.ibb.co/Pgz2Mhc/hacksaw.jpg",
+        "des": "A world-class saw made of thin, strong and pure metal and iron that can be easily cut. Which is chronic.",
+        "minimum": 150,
+        "quantity": 1200,
+        "price": 150
+    },
+    {
+        "_id": 5,
+        "name": "Measuring Tape",
+        "img": "https://i.ibb.co/ygKwzb3/Measuring-Tape.jpg",
+        "des": "Thin, durable tape. Which can be easily and accurately measured. Not likely to be wrong. Long lasting.",
+        "minimum": 200,
+        "quantity": 1000,
+        "price": 180
+    },
+    {
+        "_id": 6,
+        "name": "Pliers",
+        "img": "https://i.ibb.co/gWJLDCJ/Pliers.jpg",
+        "des": "Extremely strong, durable, easily portable. By which cable etc. can be cut very easily.",
+        "minimum": 300,
+        "quantity": 1500,
+        "price": 150
+    }
+]

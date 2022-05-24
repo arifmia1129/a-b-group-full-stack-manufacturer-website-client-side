@@ -6,7 +6,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         const getProducts = async () => {
-            const { data } = await axios.get("products.json")
+            const { data } = await axios.get("http://localhost:5000/product")
             setProducts(data)
         }
         getProducts()
