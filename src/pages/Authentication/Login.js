@@ -8,7 +8,7 @@ import useToken from '../../hooks/useToken';
 import Spinner from '../Shared/Spinner';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm();
     const [
         signInWithEmailAndPassword,
         user,
@@ -21,7 +21,6 @@ const Login = () => {
     );
     const [token] = useToken(user || gUser);
     let errorMessage;
-    const emailRef = useRef("");
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -49,9 +48,16 @@ const Login = () => {
         reset();
     };
     const resetPass = async () => {
-        const email = await emailRef?.current?.value
-        await sendPasswordResetEmail(email);
-        toast.success("Email send for password reset!")
+        errorMessage = ""
+        const email = getValues("email")
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast.success("Email send for password reset!")
+        }
+        else {
+            toast.error("Enter a valid email!")
+        }
+
     }
     return (
         <div className='mt-10'>
@@ -75,7 +81,7 @@ const Login = () => {
                                         message: 'Enter a valid email'
                                     }
                                 })}
-                                ref={emailRef}
+
                                 type="email" placeholder="Enter your valid email" class="input input-bordered  max-w-xs" />
                             <label class="label">
                                 <span class="label-text-alt text-red-500">
@@ -104,11 +110,6 @@ const Login = () => {
                                 <span class="label-text-alt text-red-500">
                                     {errors?.password?.message}
                                 </span>
-                                <span>
-                                    <button onClick={resetPass} class="text-primary font-bold">
-                                        <small>Password reset?</small>
-                                    </button>
-                                </span>
                             </label>
                         </div>
 
@@ -125,6 +126,9 @@ const Login = () => {
                             <input className='input input-bordered w-full max-w-xs btn bg-gradient-to-r from-secondary to-primary cursor-pointer text-white border-0' type="submit" value="Login" />
                         </div>
                     </form>
+                    <button onClick={resetPass} class="text-primary font-bold">
+                        <small>Password reset?</small>
+                    </button>
                     <p className='text-center'><small>Are you new in A&B Group? <Link to="/register"><span className='text-primary font-bold'>Register now!</span></Link></small></p>
 
                     <div class="divider">OR</div>
