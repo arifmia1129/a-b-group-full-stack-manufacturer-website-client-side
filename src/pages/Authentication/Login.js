@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import Spinner from '../Shared/Spinner';
 
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
     const [sendPasswordResetEmail, sending, rError] = useSendPasswordResetEmail(
         auth
     );
-
+    const [token] = useToken(user || gUser);
     let errorMessage;
     const emailRef = useRef("");
 

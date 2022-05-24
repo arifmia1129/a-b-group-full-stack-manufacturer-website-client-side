@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import auth from '../../firebase.init';
 import { Link, useNavigate } from 'react-router-dom';
 import Spinner from '../Shared/Spinner';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const [
@@ -17,7 +18,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const navigate = useNavigate();
-
+    const [token] = useToken(user || gUser);
     useEffect(() => {
         if (user || gUser) {
             navigate("/");
