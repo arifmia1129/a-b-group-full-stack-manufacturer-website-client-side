@@ -11,8 +11,9 @@ const useToken = (user) => {
             body: JSON.stringify({ email })
         })
             .then(res => res.json())
-            .then(result => {
-                // console.log(result);
+            .then(data => {
+                setToken(data.token);
+                localStorage.setItem("token", data.token);
             })
     }
 
