@@ -1,33 +1,35 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
 import Spinner from '../Shared/Spinner';
+import CancelModal from './CancelModal';
 import Order from './Order';
 
 const MyOrders = () => {
     const navigate = useNavigate();
+    const [cancelProduct, setCancelProduct] = useState(null);
     const [user, loading] = useAuthState(auth);
-    const [bookingProducts, setBookingProduct] = useState([]);
-    useEffect(() => {
-        const getBookingProducts = async () => {
-            try {
-                const { data } = await axiosPrivate.get(`http://localhost:5000/booking?email=${user?.email}`);
-                setBookingProduct(data);
+    // const [bookingProducts, setBookingProducts] = useState([]);
+
+    const { isLoading, data: bookingProducts, refetch } = useQuery(['booking', user], () =>
+        fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`
             }
-            catch (error) {
-                if (error?.response?.status === 401 || 403) {
-                    signOut(auth);
-                    localStorage.removeItem("token");
-                    navigate("/login");
-                }
+        }).then(res => {
+            if (res.status === 401 || res.status === 403) {
+                signOut(auth);
+                localStorage.removeItem("token");
+                navigate("/login");
             }
-        }
-        getBookingProducts();
-    }, [user])
-    if (loading) {
+            return res.json()
+        })
+    )
+    if (loading || isLoading) {
         return <Spinner />
     }
     return (
@@ -40,19 +42,27 @@ const MyOrders = () => {
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Total Price</th>
-                        <th>Payment</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        bookingProducts.map((bookingProduct, index) => <Order
+                        bookingProducts?.map((bookingProduct, index) => <Order
                             key={bookingProduct._id}
                             bookingProduct={bookingProduct}
                             index={index}
+                            setCancelProduct={setCancelProduct}
                         />)
                     }
                 </tbody>
             </table>
+            {
+                cancelProduct && <CancelModal
+                    cancelProduct={cancelProduct}
+                    setCancelProduct={setCancelProduct}
+                    refetch={refetch}
+                />
+            }
         </div>
     );
 };
