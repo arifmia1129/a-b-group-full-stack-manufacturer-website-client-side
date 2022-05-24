@@ -12,6 +12,8 @@ const Purchase = () => {
     const [user, loading] = useAuthState(auth);
     const { displayName, email } = user;
     const { id } = useParams();
+    const [data, setData] = useState({});
+    const [result, setResult] = useState({});
     const { isLoading, error, data: product, refetch } = useQuery(['product', id], () =>
         fetch(`http://localhost:5000/product/${id}`).then(res =>
             res.json()
@@ -38,6 +40,7 @@ const Purchase = () => {
         return <Spinner />
     }
     const { img, name, quantity, minimum, price, des } = product;
+
     const confirmOrder = () => {
         if (phone && address && orderQuantity) {
             fetch(`http://localhost:5000/product/${id}`, {
@@ -49,9 +52,35 @@ const Purchase = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    setData(data);
                 })
-            toast.success("Your order is booked!")
+            const bookingInfo = {
+                productId: id,
+                product: name,
+                orderQuantity,
+                totalPrice: (orderQuantity * price),
+                user: email,
+                phone,
+                address
+            }
+            fetch(`http://localhost:5000/booking`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(bookingInfo)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    setResult(result);
+                })
+            if (data && result) {
+                if (data.acknowledged && data.modifiedCount && result.acknowledged && result.insertedId) {
+                    toast.success("Your order is booked!");
+                    refetch();
+                }
+            }
+
         }
         if (!phone || !address || !orderQuantity) {
             toast.error("Phone or Address or Quantity info is missing")
@@ -71,7 +100,7 @@ const Purchase = () => {
                             <h2 className='text-xl font-bold'>{name}</h2>
                             <p>{des}</p>
                             <div className='border-2  p-1 rounded-lg'>
-                                <p><span className='font-bold'>Available Quantity:</span> {quantity}(minimum)</p>
+                                <p><span className='font-bold'>Available Quantity:</span> {quantity}</p>
                                 <p><span className='font-bold'>Order Quantity:</span> {minimum}(minimum)</p>
                                 <p><span className='font-bold'>Price:</span> {price}(per product)</p>
                             </div>
@@ -132,7 +161,7 @@ const Purchase = () => {
                                             message: `Minimum quantity is ${minimum}`
                                         },
                                     })}
-                                    type="number" placeholder="Enter product quantity" class="input input-bordered  max-w-xs" />
+                                    defaultValue={minimum} type="number" placeholder="Enter product quantity" class="input input-bordered  max-w-xs" />
                                 <label class="label">
                                     <span class="label-text-alt text-red-500">
                                         {errors?.quantity?.message}
@@ -145,7 +174,7 @@ const Purchase = () => {
                 </div>
             </div>
             <div className='flex justify-center items-center'>
-                <button onClick={confirmOrder} className='btn bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg border-0'>Confirm Order</button>
+                <button onClick={confirmOrder} className='btn btn-error font-fold text-white rounded-lg border-0'>Confirm Order</button>
             </div>
         </div>
     );
