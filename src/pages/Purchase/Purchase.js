@@ -12,8 +12,6 @@ const Purchase = () => {
     const [user, loading] = useAuthState(auth);
     const { displayName, email } = user;
     const { id } = useParams();
-    const [data, setData] = useState({});
-    const [result, setResult] = useState({});
     const { isLoading, error, data: product, refetch } = useQuery(['product', id], () =>
         fetch(`http://localhost:5000/product/${id}`).then(res =>
             res.json()
@@ -41,19 +39,9 @@ const Purchase = () => {
     }
     const { img, name, quantity, minimum, price, des } = product;
 
-    const confirmOrder = () => {
+    const confirmOrder = async () => {
         if (phone && address && orderQuantity) {
-            fetch(`http://localhost:5000/product/${id}`, {
-                method: "PATCH",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify({ quantity: (quantity - orderQuantity) })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setData(data);
-                })
+
             const bookingInfo = {
                 productId: id,
                 product: name,
@@ -63,23 +51,37 @@ const Purchase = () => {
                 phone,
                 address
             }
-            fetch(`http://localhost:5000/booking`, {
-                method: "POST",
+            const booking = () => {
+                fetch(`http://localhost:5000/booking`, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(bookingInfo)
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.acknowledged && result.insertedId) {
+                            toast.success("Your order is booked!");
+                            refetch();
+                        }
+                    })
+            }
+
+            fetch(`http://localhost:5000/product/${id}`, {
+                method: "PATCH",
                 headers: {
                     "content-type": "application/json"
                 },
-                body: JSON.stringify(bookingInfo)
+                body: JSON.stringify({ quantity: (quantity - orderQuantity) })
             })
                 .then(res => res.json())
-                .then(result => {
-                    setResult(result);
+                .then(data => {
+                    if (data.acknowledged && data.modifiedCount) {
+                        booking();
+                    }
+
                 })
-            if (data && result) {
-                if (data.acknowledged && data.modifiedCount && result.acknowledged && result.insertedId) {
-                    toast.success("Your order is booked!");
-                    refetch();
-                }
-            }
 
         }
         if (!phone || !address || !orderQuantity) {

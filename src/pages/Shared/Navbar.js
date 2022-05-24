@@ -23,14 +23,19 @@ const Navbar = ({ children }) => {
                     <div class="flex-none hidden lg:block">
                         <ul class="menu menu-horizontal">
                             <li><NavLink to="/" className={({ isActive }) =>
-                                isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Home</NavLink></li>
+                                isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Home</NavLink>
+                            </li>
+                            <li><NavLink to="/dashboard" className={({ isActive }) =>
+                                isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Dashboard</NavLink>
+                            </li>
+
                             <li><NavLink to="/about" className={({ isActive }) =>
                                 isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>About</NavLink></li>
                             {
                                 user ? <>
                                     <button
                                         onClick={() => logout()}
-                                        className='btn btn-primary text-white mx-2'>Sign Out</button>
+                                        className='btn btn-xs btn-primary text-white mx-2 my-auto'>Sign Out</button>
                                     <p className='my-auto border-2 p-1 rounded-lg'>{user?.displayName}</p>
                                 </> : <li><NavLink to="/login" className={({ isActive }) =>
                                     isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Login</NavLink>
