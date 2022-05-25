@@ -31,7 +31,7 @@ const MyOrders = () => {
         return <Spinner />
     }
     return (
-        <div class="overflow-x-auto w-full h-screen">
+        <div >
             <table class="table w-full">
 
                 <thead>

@@ -14,8 +14,12 @@ const Order = ({ bookingProduct, index, setCancelProduct }) => {
             <td>{totalPrice}</td>
             <td>{(!status && !tnxId) ?
                 <>
-                    <label onClick={handleCancel} for="my-modal" class="btn btn-xs btn-accent text-white font-bold modal-button">Cancel</label>
-                    <button onClick={() => navigate(`/payment/${_id}`)} className='btn btn-error btn-xs ml-2 font-bold text-white'>Pay</button>
+                    <div className="flex justify-center items-center">
+                        <div>
+                            <label onClick={handleCancel} for="my-modal" class="btn btn-xs btn-accent text-white font-bold modal-button">Cancel</label>
+                            <button onClick={() => navigate(`/payment/${_id}`)} className='btn btn-error btn-xs ml-2 font-bold text-white mx-auto'>Pay</button>
+                        </div>
+                    </div>
                 </>
                 :
                 <>
