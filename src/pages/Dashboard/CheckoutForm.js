@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axiosPrivate from "../../api/axiosPrivate";
 import {
   CardElement, Elements, ElementsConsumer,
   useStripe,
@@ -64,26 +65,22 @@ const CheckoutForm = ({ bookingProduct }) => {
           },
         },
       );
-
+      const paymentInfo = {
+        productId,
+        product,
+        orderQuantity,
+        totalPrice,
+        user,
+        tnxId: paymentIntent?.id
+      }
       if (intentError) {
         setErrorMessage(intentError?.message);
       }
       else {
-        fetch(`http://localhost:5000/booking/${_id}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`
-          },
-          body: JSON.stringify({ status: "pending" })
-        })
-          .then(res => res.json())
-          .then(data => {
-
+        axiosPrivate.put(`http://localhost:5000/booking/${_id}`, { status: "pending", tnxId: paymentIntent?.id })
+          .then(res => {
+            axiosPrivate.post("http://localhost:5000/payment", paymentInfo)
           })
-
-
-
 
         setSuccessMessage("Congrats! Payment is done!");
         setTnxId(paymentIntent?.id);
@@ -112,8 +109,8 @@ const CheckoutForm = ({ bookingProduct }) => {
         }}
       />
       <p><small className='text-red-500 font-bold'>{errorMessage && errorMessage}</small></p>
-      <p><small className='text-green-500 font-bold'>{successMessage && successMessage}</small></p>
-      <p><small className='text-green-500 font-bold'>Tnx Id: {tnxId && tnxId}</small></p>
+      {successMessage && <p><small className='text-green-500 font-bold'>{successMessage}</small></p>}
+      {tnxId && <p><small className='text-green-500 font-bold'>Tnx Id: {tnxId}</small></p>}
       <button className='btn btn-error btn-xs text-white mt-1' type="submit" disabled={!stripe || !elements}>
         Pay
       </button>

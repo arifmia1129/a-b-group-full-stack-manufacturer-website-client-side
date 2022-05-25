@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 const Order = ({ bookingProduct, index, setCancelProduct }) => {
     const navigate = useNavigate();
-    const { product, orderQuantity, totalPrice, paid, _id, status } = bookingProduct;
+    const { product, orderQuantity, totalPrice, _id, status, tnxId } = bookingProduct;
     const handleCancel = () => {
         setCancelProduct(bookingProduct);
     }
@@ -12,10 +12,16 @@ const Order = ({ bookingProduct, index, setCancelProduct }) => {
             <td>{product}</td>
             <td>{orderQuantity}</td>
             <td>{totalPrice}</td>
-            <td>{!status &&
+            <td>{(!status && !tnxId) ?
                 <>
                     <label onClick={handleCancel} for="my-modal" class="btn btn-xs btn-accent text-white font-bold modal-button">Cancel</label>
                     <button onClick={() => navigate(`/payment/${_id}`)} className='btn btn-error btn-xs ml-2 font-bold text-white'>Pay</button>
+                </>
+                :
+                <>
+                    <p className='text-orange-700 border p-1 text-center w-72 mx-auto'>
+                        <small>{status}, tnx: {tnxId}</small>
+                    </p>
                 </>
             }
             </td>
