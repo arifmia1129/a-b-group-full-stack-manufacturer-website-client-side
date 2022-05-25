@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Spinner from '../Shared/Spinner';
 import { toast } from 'react-toastify';
-import { useQuery } from 'react-query';
+import useProduct from '../../hooks/useProduct';
 
 
 const Purchase = () => {
+    
     const [userStatus, setUserStatus] = useState("");
     const [quantityStatus, setQuantityStatus] = useState("");
     const [orderConfirmStatus, setOrderConfirmStatus] = useState("");
     const [user, loading] = useAuthState(auth);
     const { displayName, email } = user;
     const { id } = useParams();
-    const { isLoading, error, data: product, refetch } = useQuery(['product', id], () =>
-        fetch(`http://localhost:5000/product/${id}`).then(res =>
-            res.json()
-        )
-    )
+   const {product, refetch} = useProduct(id);
+   
 
     const [orderQuantity, setOrderQuantity] = useState(0);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -39,7 +37,7 @@ const Purchase = () => {
         e.target.reset();
         setUserStatus("step-primary");
     }
-    if (loading || isLoading) {
+    if (loading) {
         return <Spinner />
     }
     const { img, name, quantity, minimum, price, des } = product;
