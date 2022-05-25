@@ -7,11 +7,7 @@ const useProduct = id => {
             res.json()
         )
     )
-    if(isLoading) {
-        return <Spinner/>
-    }
-
-    return {product, refetch};
+    return {product, refetch, isLoading};
 }
 
 export default useProduct;

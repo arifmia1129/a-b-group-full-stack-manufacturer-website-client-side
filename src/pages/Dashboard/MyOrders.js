@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
 import Spinner from '../Shared/Spinner';
 import CancelModal from './CancelModal';
@@ -13,7 +12,6 @@ const MyOrders = () => {
     const navigate = useNavigate();
     const [cancelProduct, setCancelProduct] = useState(null);
     const [user, loading] = useAuthState(auth);
-    // const [bookingProducts, setBookingProducts] = useState([]);
 
     const { isLoading, data: bookingProducts, refetch } = useQuery(['booking', user], () =>
         fetch(`http://localhost:5000/booking?email=${user?.email}`, {

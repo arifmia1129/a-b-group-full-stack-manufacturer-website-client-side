@@ -5,20 +5,16 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Spinner from '../Shared/Spinner';
 import { toast } from 'react-toastify';
-import useProduct from '../../hooks/useProduct';
+import useProduct from "../../hooks/useProduct";
 
 
 const Purchase = () => {
-    
     const [userStatus, setUserStatus] = useState("");
     const [quantityStatus, setQuantityStatus] = useState("");
     const [orderConfirmStatus, setOrderConfirmStatus] = useState("");
     const [user, loading] = useAuthState(auth);
     const { displayName, email } = user;
     const { id } = useParams();
-   const {product, refetch} = useProduct(id);
-   
-
     const [orderQuantity, setOrderQuantity] = useState(0);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
@@ -37,7 +33,9 @@ const Purchase = () => {
         e.target.reset();
         setUserStatus("step-primary");
     }
-    if (loading) {
+    const {product, refetch, isLoading} = useProduct(id);
+   
+    if (loading || isLoading) {
         return <Spinner />
     }
     const { img, name, quantity, minimum, price, des } = product;
@@ -51,6 +49,7 @@ const Purchase = () => {
                 orderQuantity,
                 totalPrice: (orderQuantity * price),
                 user: email,
+                name: displayName,
                 phone,
                 address
             }
