@@ -14,20 +14,6 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
         return <Spinner />
     }
     const handleCancel = () => {
-        fetch(`http://localhost:5000/booking/${_id}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json"
-            },
-
-        })
-            .then(res => res.json())
-            .then(result => {
-                if (result.deletedCount) {
-                    updateQuantity();
-                }
-            })
-
         const updateQuantity = () => {
             fetch(`http://localhost:5000/product/${productId}`, {
                 method: "PATCH",
@@ -45,6 +31,22 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
                     }
                 })
         }
+
+        fetch(`http://localhost:5000/booking/${_id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            },
+
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.deletedCount) {
+                    updateQuantity();
+                }
+            })
+
+
     }
     return (
         <div>
@@ -54,8 +56,8 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
                     <h3 class="font-bold text-lg text-error">Are you sure cancel this order?</h3>
                     <p class="py-4">This order is permanently delete from you dashboard and your database. You can't access this!</p>
                     <div class="modal-action">
-                        <label onClick={handleCancel} for="my-modal" class="btn btn-error">Yes</label>
-                        <label onClick={() => setCancelProduct(null)} for="my-modal" class="btn btn-success">No</label>
+                        <label onClick={handleCancel} for="my-modal" class="btn btn-error text-white font-bold">Yes</label>
+                        <label onClick={() => setCancelProduct(null)} for="my-modal" class="btn btn-success text-white font-bold">No</label>
                     </div>
                 </div>
             </div>

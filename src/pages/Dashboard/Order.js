@@ -12,7 +12,12 @@ const Order = ({ bookingProduct, index, setCancelProduct }) => {
             <td>{orderQuantity}</td>
             <td>{totalPrice}</td>
             <td>{!paid &&
-                <label onClick={handleCancel} for="my-modal" class="btn btn-xs btn-error text-white font-bold modal-button">Cancel</label>}</td>
+                <>
+                    <label onClick={handleCancel} for="my-modal" class="btn btn-xs btn-accent text-white font-bold modal-button">Cancel</label>
+                    <button className='btn btn-error btn-xs ml-2 font-bold text-white'>Pay</button>
+                </>
+            }
+            </td>
         </tr>
     );
 };
