@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -9,6 +9,9 @@ import { useQuery } from 'react-query';
 
 
 const Purchase = () => {
+    const [userStatus, setUserStatus] = useState("");
+    const [quantityStatus, setQuantityStatus] = useState("");
+    const [orderConfirmStatus, setOrderConfirmStatus] = useState("");
     const [user, loading] = useAuthState(auth);
     const { displayName, email } = user;
     const { id } = useParams();
@@ -23,6 +26,7 @@ const Purchase = () => {
     const onSubmit = data => {
         setOrderQuantity(data.quantity);
         reset();
+        setQuantityStatus("step-primary");
     };
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
@@ -33,6 +37,7 @@ const Purchase = () => {
         const address = e.target.address.value;
         setAddress(address);
         e.target.reset();
+        setUserStatus("step-primary");
     }
     if (loading || isLoading) {
         return <Spinner />
@@ -64,6 +69,7 @@ const Purchase = () => {
                         if (result.acknowledged && result.insertedId) {
                             toast.success("Your order is booked!");
                             refetch();
+                            setOrderConfirmStatus("step-primary");
                         }
                     })
             }
@@ -90,8 +96,15 @@ const Purchase = () => {
     }
 
     return (
-        <div className='border-4 p-5 rounded-lg'>
-            <div>
+        <div>
+            <div className="sticky top-20 bg-base-100">
+            <ul class="steps steps-vertical lg:steps-horizontal w-full">
+                <li class={`step ${userStatus}`}>Submit User Info</li>
+                <li class={`step ${quantityStatus}`}>Confirm Quantity</li>
+                <li class={`step ${orderConfirmStatus}`}>Confirm Order</li>
+            </ul>
+            </div>
+            <div className='border-4 p-5 rounded-lg'>
                 <h3 className="text-2xl text-primary font-bold mb-2">Basic Information for Purchase:</h3>
                 <div class="">
                     <div className='flex justify-center items-center'>
@@ -170,7 +183,7 @@ const Purchase = () => {
                                     </span>
                                 </label>
                             </div>
-                            <input className='btn btn-primary font-bold text-white' disabled={errors?.quantity?.message} type="submit" value="Order" />
+                            <input className='btn btn-primary font-bold text-white' disabled={errors?.quantity?.message} type="submit" value="Confirm Quantity" />
                         </form>
                     </div>
                 </div>
