@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/Shared/NotFound';
 import Purchase from './pages/Purchase/Purchase';
 import RequireAuth from './pages/Authentication/RequireAuth';
+import RequireAdmin from './pages/Authentication/RequireAdmin';
 import Dashboard from './pages/Dashboard/Dashboard';
 import MyOrders from './pages/Dashboard/MyOrders';
 import AddReview from './pages/Dashboard/AddReview';
@@ -32,10 +33,10 @@ function App() {
           }>
             <Route index element={<MyOrders />} />
             <Route path="/dashboard/add-review" element={<AddReview />} />
-            <Route path="/dashboard/add-product" element={<AddProduct />} />
-            <Route path="/dashboard/manage-products" element={<ManageProducts />} />
-            <Route path="/dashboard/manage-all-orders" element={<ManageAllOrders />} />
-            <Route path="/dashboard/make-admin" element={<MakeAdmin />} />
+            <Route path="/dashboard/add-product" element={<RequireAdmin><AddProduct /></RequireAdmin>} />
+            <Route path="/dashboard/manage-products" element={<RequireAdmin><ManageProducts /></RequireAdmin>} />
+            <Route path="/dashboard/manage-all-orders" element={<RequireAdmin><ManageAllOrders /></RequireAdmin>} />
+            <Route path="/dashboard/make-admin" element={<RequireAdmin><MakeAdmin /></RequireAdmin>} />
             <Route path="/dashboard/my-profile" element={<MyProfile />} />
           </Route>
           <Route path="/purchase/:id" element={

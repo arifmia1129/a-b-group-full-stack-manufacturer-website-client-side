@@ -1,7 +1,16 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
+import Spinner from '../Shared/Spinner';
 
 const Dashboard = () => {
+    const [user, loading] = useAuthState(auth);
+    const [admin, aLoading] = useAdmin(user);
+    if (loading || aLoading) {
+        return <Spinner />
+    }
     return (
         <div>
             <label for="my-drawer-2" class="btn btn-square btn-ghost lg:hidden">
@@ -16,12 +25,20 @@ const Dashboard = () => {
                     <label for="my-drawer-2" class="drawer-overlay"></label>
                     <ul class="menu p-4 overflow-y-auto w-fit text-base-content">
 
-                        <li><Link to="/dashboard">My Orders</Link></li>
-                        <li><Link to="/dashboard/add-review">Add a Review</Link></li>
-                        <li><Link to="/dashboard/make-admin">Make Admin</Link></li>
-                        <li><Link to="/dashboard/add-product">Add Product</Link></li>
-                        <li><Link to="/dashboard/manage-products">Manage Products</Link></li>
-                        <li><Link to="/dashboard/manage-all-orders">Manage All Orders</Link></li>
+                        {
+                            !admin && <>
+                                <li><Link to="/dashboard">My Orders</Link></li>
+                                <li><Link to="/dashboard/add-review">Add a Review</Link></li>
+                            </>
+                        }
+                        {
+                            admin && <>
+                                <li><Link to="/dashboard/make-admin">Make Admin</Link></li>
+                                <li><Link to="/dashboard/add-product">Add Product</Link></li>
+                                <li><Link to="/dashboard/manage-products">Manage Products</Link></li>
+                                <li><Link to="/dashboard/manage-all-orders">Manage All Orders</Link></li>
+                            </>
+                        }
                         <li><Link to="/dashboard/my-profile">My Profile</Link></li>
                     </ul>
 

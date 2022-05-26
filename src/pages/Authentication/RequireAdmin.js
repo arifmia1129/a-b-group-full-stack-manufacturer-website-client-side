@@ -1,25 +1,24 @@
 import { signOut } from 'firebase/auth';
-import React, { Children } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 import Spinner from '../Shared/Spinner';
 
-const RequireAdmin = () => {
+const RequireAdmin = ({ children }) => {
     const [user, loading] = useAuthState(auth);
-    const [admin] = useAdmin();
-    const navigate = useNavigate();
-    if (loading) {
+    const [admin, aLoading] = useAdmin(user);
+    const location = useLocation();
+    if (loading || aLoading) {
         return <Spinner />
     }
-
     if (!user || !admin) {
-        signOut(auth);
         localStorage.removeItem("token");
-        navigate("/login");
+        signOut(auth);
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
-    return Children;
+    return children;
 };
 
 export default RequireAdmin;

@@ -4,22 +4,18 @@ import axiosPrivate from "../api/axiosPrivate";
 import auth from "../firebase.init";
 import Spinner from "../pages/Shared/Spinner";
 
-const useAdmin = () => {
+const useAdmin = (user) => {
     const [admin, setAdmin] = useState(false);
-    const [user, loading] = useAuthState(auth)
+    const [aLoading, setALoading] = useState(true);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axiosPrivate.get(`http://localhost:5000/user/${user?.email}`);
-            if (data?.role === "admin") {
-                setAdmin(true);
-            }
+            const { data } = await axiosPrivate.get(`http://localhost:5000/admin/${user?.email}`);
+            setAdmin(data?.isAdmin);
+            setALoading(false);
         }
         getData();
     }, [user])
-    if (loading) {
-        return <Spinner />
-    }
-    return [admin];
+    return [admin, aLoading];
 
 }
 
