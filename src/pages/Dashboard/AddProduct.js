@@ -65,7 +65,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control  max-w-xs">
                         <label className="label">
-                            <span className="label-text">Image Link</span>
+                            <span className="label-text">Or Insert Image Link</span>
                         </label>
                         <input
                             {...register("imgLink", {

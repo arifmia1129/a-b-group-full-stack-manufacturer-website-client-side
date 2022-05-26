@@ -25,11 +25,6 @@ const ManageAllOrders = () => {
     return (
         <div>
             <h3 className="text-2xl text-primary font-bold mb-2">Your all orders:</h3>
-            <select name="" id="">
-                <option value="{}">All</option>
-                <option value="{status:'pending'}">Pending</option>
-                <option value="{status:'ship'}">Pending</option>
-            </select>
             <table className="table w-full">
                 <thead>
                     <tr>
