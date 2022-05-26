@@ -24,7 +24,7 @@ const Order = ({ bookingProduct, index, setCancelProduct }) => {
                 :
                 <>
                     <p className='text-orange-700 border p-1 text-center w-72 mx-auto'>
-                        <small>{status}, tnx: {tnxId}</small>
+                        <small><span className='bg-orange-500 font-bold text-white p-1 rounded'>{status}</span>, tnx: {tnxId}</small>
                     </p>
                 </>
             }
