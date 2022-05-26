@@ -14,7 +14,7 @@ const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
 
     const { isLoading, data: bookingProducts, refetch } = useQuery(['booking', user], () =>
-        fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/booking?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }

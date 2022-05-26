@@ -10,7 +10,7 @@ const ManageAllOrders = () => {
     const [deleteProduct, setDeleteProduct] = useState(null);
     const [user, loading] = useAuthState(auth);
     const { isLoading, data: bookingProducts, refetch } = useQuery('bookingProducts', () =>
-        fetch(`http://localhost:5000/all-booking?email=${user?.email}&query=`, {
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/all-booking?email=${user?.email}&query=`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }

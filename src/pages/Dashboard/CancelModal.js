@@ -6,7 +6,7 @@ import Spinner from '../Shared/Spinner';
 const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
     const { orderQuantity, productId, _id } = cancelProduct;
     const { isLoading, data: product } = useQuery(['product', productId], () =>
-        fetch(`http://localhost:5000/product/${productId}`).then(res =>
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/product/${productId}`).then(res =>
             res.json()
         )
     )
@@ -15,7 +15,7 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
     }
     const handleCancel = () => {
         const updateQuantity = () => {
-            fetch(`http://localhost:5000/product/${productId}`, {
+            fetch(`https://enigmatic-reef-93908.herokuapp.com/product/${productId}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json"
@@ -32,7 +32,7 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
                 })
         }
 
-        fetch(`http://localhost:5000/booking/${_id}`, {
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/booking/${_id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json"

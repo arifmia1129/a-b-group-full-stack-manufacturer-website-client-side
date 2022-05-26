@@ -5,7 +5,7 @@ import axiosPrivate from '../../api/axiosPrivate';
 const DeleteModal = ({ refetch, setDeleteProduct, deleteProduct }) => {
     const { _id } = deleteProduct;
     const handleDelete = () => {
-        axiosPrivate.delete(`http://localhost:5000/product/${_id}`)
+        axiosPrivate.delete(`https://enigmatic-reef-93908.herokuapp.com/product/${_id}`)
             .then(res => {
                 if (res.data.acknowledged && res.data.deletedCount) {
                     toast.success("Delete operation success!")

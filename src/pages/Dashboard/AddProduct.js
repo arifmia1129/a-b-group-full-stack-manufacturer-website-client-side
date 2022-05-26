@@ -21,7 +21,7 @@ const AddProduct = () => {
                         const productInfo = {
                             name, des, minimum, quantity, price, img: result.data.url
                         };
-                        axiosPrivate.post("http://localhost:5000/product", productInfo)
+                        axiosPrivate.post("https://enigmatic-reef-93908.herokuapp.com/product", productInfo)
                             .then(res => {
                                 if (res.data.acknowledged && res.data.insertedId)
                                     toast.success("Successfully product added!")
@@ -34,7 +34,7 @@ const AddProduct = () => {
             const productInfo = {
                 name, des, minimum, quantity, price, img: imgLink
             };
-            axiosPrivate.post("http://localhost:5000/product", productInfo)
+            axiosPrivate.post("https://enigmatic-reef-93908.herokuapp.com/product", productInfo)
                 .then(res => {
                     if (res.data.acknowledged && res.data.insertedId)
                         toast.success("Successfully product added!")

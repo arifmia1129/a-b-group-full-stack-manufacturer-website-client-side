@@ -8,7 +8,7 @@ const ManageProducts = () => {
 
     const [deleteProduct, setDeleteProduct] = useState(null);
     const { isLoading, data: products, refetch } = useQuery('products', () =>
-        fetch(`http://localhost:5000/product`).then(res =>
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/product`).then(res =>
             res.json()
         )
     )

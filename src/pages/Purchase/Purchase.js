@@ -54,7 +54,7 @@ const Purchase = () => {
                 address
             }
             const booking = () => {
-                fetch(`http://localhost:5000/booking`, {
+                fetch(`https://enigmatic-reef-93908.herokuapp.com/booking`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
@@ -71,7 +71,7 @@ const Purchase = () => {
                     })
             }
 
-            fetch(`http://localhost:5000/product/${id}`, {
+            fetch(`https://enigmatic-reef-93908.herokuapp.com/product/${id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json"

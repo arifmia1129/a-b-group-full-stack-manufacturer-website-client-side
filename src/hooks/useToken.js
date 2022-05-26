@@ -3,7 +3,7 @@ const useToken = (user) => {
     const [token, setToken] = useState("");
     const email = user?.user?.email;
     if (email) {
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/user`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

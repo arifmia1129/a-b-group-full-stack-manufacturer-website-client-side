@@ -24,7 +24,7 @@ const CheckoutForm = ({ bookingProduct }) => {
   const [clientSecret, setClientSecret] = useState("");
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://enigmatic-reef-93908.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price: totalPrice }),
@@ -77,9 +77,9 @@ const CheckoutForm = ({ bookingProduct }) => {
         setErrorMessage(intentError?.message);
       }
       else {
-        axiosPrivate.put(`http://localhost:5000/booking/${_id}`, { status: "pending", tnxId: paymentIntent?.id })
+        axiosPrivate.put(`https://enigmatic-reef-93908.herokuapp.com/booking/${_id}`, { status: "pending", tnxId: paymentIntent?.id })
           .then(res => {
-            axiosPrivate.post("http://localhost:5000/payment", paymentInfo)
+            axiosPrivate.post("https://enigmatic-reef-93908.herokuapp.com/payment", paymentInfo)
           })
 
         setSuccessMessage("Congrats! Payment is done!");

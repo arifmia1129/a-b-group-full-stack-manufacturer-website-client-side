@@ -9,7 +9,7 @@ const useAdmin = (user) => {
     const [aLoading, setALoading] = useState(true);
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axiosPrivate.get(`http://localhost:5000/admin/${user?.email}`);
+            const { data } = await axiosPrivate.get(`https://enigmatic-reef-93908.herokuapp.com/admin/${user?.email}`);
             setAdmin(data?.isAdmin);
             setALoading(false);
         }

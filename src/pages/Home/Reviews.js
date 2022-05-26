@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Marquee from 'react-fast-marquee';
 import Review from './Review';
 import axiosPrivate from "../../api/axiosPrivate";
@@ -6,16 +6,16 @@ import axiosPrivate from "../../api/axiosPrivate";
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
 
-    useEffect(()=> {
+    useEffect(() => {
         const getReviews = async () => {
-            const {data} = await axiosPrivate.get("http://localhost:5000/review");
+            const { data } = await axiosPrivate.get("https://enigmatic-reef-93908.herokuapp.com/review");
             setReviews(data);
         }
         getReviews();
-    },[])
+    }, [])
 
-    
-    if(reviews.length) {
+
+    if (reviews.length) {
         const newReviews = [];
         let n = 6;
         let length = reviews.length;
@@ -33,7 +33,7 @@ const Reviews = () => {
             <h3 className='font-bold text-primary text-2xl mb-2'>Customer Reviews:</h3>
             <Marquee gradient={false}>
                 {
-                    (reviews?.map )((singleReview, index) => <Review
+                    (reviews?.map)((singleReview, index) => <Review
                         key={singleReview._id}
                         singleReview={singleReview}
                         index={index}

@@ -2,8 +2,8 @@ import { useQuery } from 'react-query';
 import Spinner from "../pages/Shared/Spinner";
 
 const useBooking = id => {
-    const { isLoading,data:bookingProduct, refetch } = useQuery(['bookingProduct', id], () =>
-        fetch(`http://localhost:5000/booking/${id}`, {
+    const { isLoading, data: bookingProduct, refetch } = useQuery(['bookingProduct', id], () =>
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/booking/${id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }
@@ -11,8 +11,8 @@ const useBooking = id => {
             res.json()
         )
     )
-    
-    return {bookingProduct, refetch,isLoading};
+
+    return { bookingProduct, refetch, isLoading };
 }
 
 export default useBooking;

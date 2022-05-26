@@ -5,7 +5,7 @@ import axiosPrivate from '../../api/axiosPrivate';
 const ManageOrder = ({ bookingProduct, index, refetch, setDeleteProduct }) => {
     const { product, orderQuantity, totalPrice, status, tnxId, _id } = bookingProduct;
     const handleShip = () => {
-        axiosPrivate.put(`http://localhost:5000/booking/${_id}`, { status: "shipped" })
+        axiosPrivate.put(`https://enigmatic-reef-93908.herokuapp.com/booking/${_id}`, { status: "shipped" })
             .then(res => {
                 if (res.data.acknowledged && res.data.matchedCount) {
                     toast.success("Status update! Status now: shipped!")
@@ -14,7 +14,7 @@ const ManageOrder = ({ bookingProduct, index, refetch, setDeleteProduct }) => {
             })
     }
     const handleUnShip = () => {
-        axiosPrivate.put(`http://localhost:5000/booking/${_id}`, { status: "pending" })
+        axiosPrivate.put(`https://enigmatic-reef-93908.herokuapp.com/booking/${_id}`, { status: "pending" })
             .then(res => {
                 if (res.data.acknowledged && res.data.matchedCount) {
                     toast.success("Status update! Status now: pending!")

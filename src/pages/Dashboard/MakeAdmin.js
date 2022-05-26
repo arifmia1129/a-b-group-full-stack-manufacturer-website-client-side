@@ -5,7 +5,7 @@ import User from './User';
 
 const MakeAdmin = () => {
     const { isLoading, data: users, refetch } = useQuery('bookingProduct', () =>
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/user`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }

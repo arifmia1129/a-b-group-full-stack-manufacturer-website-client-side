@@ -16,7 +16,7 @@ const AddReview = () => {
     const onSubmit = data => {
         data.userName = user?.displayName;
         data.userEmail = user?.email;
-        axiosPrivate.post("http://localhost:5000/review", data)
+        axiosPrivate.post("https://enigmatic-reef-93908.herokuapp.com/review", data)
             .then(res => {
                 if (res.data.acknowledged && res.data.insertedId) {
                     toast.success("Your review is added. Thank you!")

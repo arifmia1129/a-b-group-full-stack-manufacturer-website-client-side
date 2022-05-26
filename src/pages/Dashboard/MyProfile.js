@@ -18,7 +18,7 @@ const MyProfile = () => {
 
 
     const { isLoading, data: currentUser, refetch } = useQuery(['profile', user], () =>
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        fetch(`https://enigmatic-reef-93908.herokuapp.com/user/${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }
@@ -35,7 +35,7 @@ const MyProfile = () => {
     const onSubmit = data => {
         data.email = user?.email;
         data.user = user?.displayName;
-        axiosPrivate.put("http://localhost:5000/user", data)
+        axiosPrivate.put("https://enigmatic-reef-93908.herokuapp.com/user", data)
             .then(res => {
                 if (res.data.result.acknowledged && res.data.result.modifiedCount) {
                     refetch();
