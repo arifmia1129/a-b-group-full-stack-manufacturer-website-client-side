@@ -8,6 +8,7 @@ const MyPortfolio = () => {
                 <div className='flex-1'>
                     <h1 className="text-3xl font-bold">Md. Arif Mia</h1>
                     <h1 className="text-xl font-bold">MERN Stack Developer</h1>
+                    <p className="font-bold">Email: "arifmia1129@gmail.com"</p>
                     <p className="py-6">
                         <span className='font-bold'>Expert:</span>
                         <br />

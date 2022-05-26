@@ -77,7 +77,7 @@ const Blogs = () => {
                 <div className='text-secondary'>
                     A-6:
                     <ul>
-                        <li>Software developer implement unit test so that test their software part. That means unit. Make sure unit test because of they test some part functionality and ui or other working properly or not. It's important for every developer.</li>
+                        <li>Software developer implement unit test so that test their software part by part. Make sure unit test because of they test some part functionality and ui or other working properly or not. It's important for every developer. This test break the whole work part by part. That is easy for developer. Unit test is software base dynamic test.</li>
                     </ul>
                 </div>
             </div>
