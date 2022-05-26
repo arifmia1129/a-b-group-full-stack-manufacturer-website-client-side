@@ -1,6 +1,19 @@
 import React from 'react';
+import code from "../assets/code.JPG";
 
 const Blogs = () => {
+
+
+    // const searchText = "pen";
+    // const products = [
+    //     { product: "Pen", price: 10, des: "good" },
+    //     { product: "Book", price: 50, des: "good" },
+    //     { product: "Note", price: 20, des: "good" },
+    // ]
+
+    // const result = products.filter(single => single.product.toLowerCase() === searchText.toLowerCase());
+    // console.log(result);
+
     return (
         <div>
             <div className="my-5">
@@ -52,8 +65,10 @@ const Blogs = () => {
                 <h3 className="text-2xl text-primary font-bold mb-2">Q-5: You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h3>
                 <div className='text-secondary'>
                     A-5:
+                    <img className='w-full' src={code} alt="" />
                     <ul>
                         <li>First all off to get search name from user using input form. Then implement find operation on array of product. Then you got proper product that you found. For better performance you can do lower case when you run find operation.</li>
+
                     </ul>
                 </div>
             </div>
