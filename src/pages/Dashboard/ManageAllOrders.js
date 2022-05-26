@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Spinner from '../Shared/Spinner';
 import ManageOrder from './ManageOrder';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
+import ConfirmDeleteModal from './ConfirmDeleteModal';
 
 const ManageAllOrders = () => {
+    const [deleteProduct, setDeleteProduct] = useState(null);
     const [user, loading] = useAuthState(auth);
     const { isLoading, data: bookingProducts, refetch } = useQuery('bookingProducts', () =>
         fetch(`http://localhost:5000/all-booking?email=${user?.email}&query=`, {
@@ -28,7 +30,7 @@ const ManageAllOrders = () => {
                 <option value="{status:'pending'}">Pending</option>
                 <option value="{status:'ship'}">Pending</option>
             </select>
-            <table class="table w-full">
+            <table className="table w-full">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -45,10 +47,16 @@ const ManageAllOrders = () => {
                             bookingProduct={bookingProduct}
                             index={index}
                             refetch={refetch}
+                            setDeleteProduct={setDeleteProduct}
                         />)
                     }
                 </tbody>
             </table>
+            {deleteProduct && <ConfirmDeleteModal
+                refetch={refetch}
+                setDeleteProduct={setDeleteProduct}
+                deleteProduct={deleteProduct}
+            />}
         </div>
     );
 };

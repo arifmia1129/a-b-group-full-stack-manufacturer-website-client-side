@@ -27,10 +27,10 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user || gUser) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [from, user, gUser, navigate])
+    }, [from, token, navigate])
 
     if (error || gError || rError) {
         errorMessage = <p className='text-red-500'>{error?.message.split(":")[1] || gError?.message.split(":")[1] || rError?.message.split(":")[1]}</p>
@@ -61,13 +61,13 @@ const Login = () => {
     }
     return (
         <div className='mt-10'>
-            <div class="card w-full lg:w-96 mx-auto shadow-xl">
-                <div class="card-body p-3 md:p-10">
+            <div className="card w-full lg:w-96 mx-auto shadow-xl">
+                <div className="card-body p-3 md:p-10">
                     <h3 className="text-2xl text-primary font-bold text-center">Login</h3>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div class="form-control  max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                        <div className="form-control  max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
                             <input
 
@@ -82,16 +82,16 @@ const Login = () => {
                                     }
                                 })}
 
-                                type="email" placeholder="Enter your valid email" class="input input-bordered  max-w-xs" />
-                            <label class="label">
-                                <span class="label-text-alt text-red-500">
+                                type="email" placeholder="Enter your valid email" className="input input-bordered  max-w-xs" />
+                            <label className="label">
+                                <span className="label-text-alt text-red-500">
                                     {errors?.email?.message}
                                 </span>
                             </label>
                         </div>
-                        <div class="form-control  max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Password</span>
+                        <div className="form-control  max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Password</span>
                             </label>
                             <input
                                 {...register("password", {
@@ -105,9 +105,9 @@ const Login = () => {
                                     }
 
                                 })}
-                                type="password" placeholder="Enter password" class="input input-bordered  max-w-xs" />
-                            <label class="label">
-                                <span class="label-text-alt text-red-500">
+                                type="password" placeholder="Enter password" className="input input-bordered  max-w-xs" />
+                            <label className="label">
+                                <span className="label-text-alt text-red-500">
                                     {errors?.password?.message}
                                 </span>
                             </label>
@@ -115,8 +115,8 @@ const Login = () => {
 
                         <div>
                             {
-                                errorMessage && <label class="label">
-                                    <span class="label-text-alt text-red-500">
+                                errorMessage && <label className="label">
+                                    <span className="label-text-alt text-red-500">
                                         {errorMessage}
                                     </span>
                                 </label>
@@ -126,12 +126,12 @@ const Login = () => {
                             <input className='input input-bordered w-full max-w-xs btn bg-gradient-to-r from-secondary to-primary cursor-pointer text-white border-0' type="submit" value="Login" />
                         </div>
                     </form>
-                    <button onClick={resetPass} class="text-primary font-bold">
+                    <button onClick={resetPass} className="text-primary font-bold">
                         <small>Password reset?</small>
                     </button>
                     <p className='text-center'><small>Are you new in A&B Group? <Link to="/register"><span className='text-primary font-bold'>Register now!</span></Link></small></p>
 
-                    <div class="divider">OR</div>
+                    <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
                         className='btn btn-outline btn-success hover:bg-gradient-to-r from-secondary to-primary'>Continue with google</button>

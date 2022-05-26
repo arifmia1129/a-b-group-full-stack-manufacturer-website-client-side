@@ -12,10 +12,10 @@ const ManageProduct = ({ product, index, setDeleteProduct }) => {
             <td>{name}</td>
             <td>{quantity}</td>
             <td>
-                <label onClick={handleDelete} for="delete-modal" class="btn btn-xs btn-accent text-white font-bold modal-button">Delete</label>
+                <label onClick={handleDelete} htmlFor="delete-modal" className="btn btn-xs btn-accent text-white font-bold modal-button">Delete</label>
             </td>
 
-        </tr>
+        </tr >
     );
 };
 

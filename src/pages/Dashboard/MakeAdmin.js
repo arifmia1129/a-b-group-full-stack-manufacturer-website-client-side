@@ -18,7 +18,7 @@ const MakeAdmin = () => {
     }
     return (
         <div>
-            <table class="table w-full">
+            <table className="table w-full">
 
                 <thead>
                     <tr>

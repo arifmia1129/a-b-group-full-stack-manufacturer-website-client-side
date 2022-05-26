@@ -33,8 +33,8 @@ const Purchase = () => {
         e.target.reset();
         setUserStatus("step-primary");
     }
-    const {product, refetch, isLoading} = useProduct(id);
-   
+    const { product, refetch, isLoading } = useProduct(id);
+
     if (loading || isLoading) {
         return <Spinner />
     }
@@ -95,15 +95,15 @@ const Purchase = () => {
     return (
         <div>
             <div className="sticky top-20 bg-base-100">
-            <ul class="steps steps-vertical lg:steps-horizontal w-full">
-                <li class={`step ${userStatus}`}>Submit User Info</li>
-                <li class={`step ${quantityStatus}`}>Confirm Quantity</li>
-                <li class={`step ${orderConfirmStatus}`}>Confirm Order</li>
-            </ul>
+                <ul className="steps steps-vertical lg:steps-horizontal w-full">
+                    <li className={`step ${userStatus}`}>Submit User Info</li>
+                    <li className={`step ${quantityStatus}`}>Confirm Quantity</li>
+                    <li className={`step ${orderConfirmStatus}`}>Confirm Order</li>
+                </ul>
             </div>
             <div className='border-4 p-5 rounded-lg'>
                 <h3 className="text-2xl text-primary font-bold mb-2">Basic Information for Purchase:</h3>
-                <div class="">
+                <div className="">
                     <div className='flex justify-center items-center'>
                         <figure><img className='h-52' src={img} alt="" /></figure>
                     </div>
@@ -121,41 +121,41 @@ const Purchase = () => {
                 </div>
             </div>
             <div className='md:flex justify-around items-center my-10'>
-                <div class="card md:w-96 w-full bg-base-100 shadow-xl">
-                    <div class="card-body">
+                <div className="card md:w-96 w-full bg-base-100 shadow-xl">
+                    <div className="card-body">
                         <h3 className="text-2xl text-primary font-bold">Order for:</h3>
                         <p>Name: {displayName}</p>
                         <p>Email: {email}</p>
                         {phone && <p>Phone: {phone}</p>}
                         {address && <p>Email: {address}</p>}
                         <form onSubmit={handleUser}>
-                            <div class="form-control  max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Phone</span>
+                            <div className="form-control  max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Phone</span>
                                 </label>
                                 <input
-                                    name="phone" required type="text" placeholder="Enter phone number" class="input input-bordered  max-w-xs" />
+                                    name="phone" required type="text" placeholder="Enter phone number" className="input input-bordered  max-w-xs" />
                             </div>
-                            <div class="form-control  max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Address</span>
+                            <div className="form-control  max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Address</span>
                                 </label>
                                 <input
-                                    name="address" required type="text" placeholder="Enter current address" class="input input-bordered  max-w-xs" />
+                                    name="address" required type="text" placeholder="Enter current address" className="input input-bordered  max-w-xs" />
                             </div>
                             <input className='btn btn-primary font-bold text-white mt-5' type="submit" />
                         </form>
                     </div>
                 </div>
-                <div class="card w-full md:w-96 bg-base-100 shadow-xl mt-5 lg:mt-0">
-                    <div class="card-body">
+                <div className="card w-full md:w-96 bg-base-100 shadow-xl mt-5 lg:mt-0">
+                    <div className="card-body">
                         <h3 className="text-2xl text-primary font-bold">Order Information: </h3>
                         <p className='text-xl text-secondary font-bold'>Order Quantity: {orderQuantity}</p>
                         <p className='text-xl text-secondary font-bold'>Total price: {orderQuantity * price}</p>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <div class="form-control  max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Quantity</span>
+                            <div className="form-control  max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Quantity</span>
                                 </label>
                                 <input
 
@@ -173,9 +173,9 @@ const Purchase = () => {
                                             message: `Minimum quantity is ${minimum}`
                                         },
                                     })}
-                                    defaultValue={minimum} type="number" placeholder="Enter product quantity" class="input input-bordered  max-w-xs" />
-                                <label class="label">
-                                    <span class="label-text-alt text-red-500">
+                                    defaultValue={minimum} type="number" placeholder="Enter product quantity" className="input input-bordered  max-w-xs" />
+                                <label className="label">
+                                    <span className="label-text-alt text-red-500">
                                         {errors?.quantity?.message}
                                     </span>
                                 </label>

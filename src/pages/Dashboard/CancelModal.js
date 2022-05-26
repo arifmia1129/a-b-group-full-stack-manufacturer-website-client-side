@@ -50,18 +50,18 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
     }
     return (
         <div>
-            <input type="checkbox" id="my-modal" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg text-error">Are you sure cancel this order?</h3>
-                    <p class="py-4">This order is permanently delete from your dashboard and database. You can't access this!</p>
-                    <div class="modal-action">
-                        <label onClick={handleCancel} for="my-modal" class="btn btn-error text-white font-bold">Yes</label>
-                        <label onClick={() => setCancelProduct(null)} for="my-modal" class="btn btn-success text-white font-bold">No</label>
+            <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg text-error">Are you sure cancel this order?</h3>
+                    <p className="py-4">This order is permanently delete from your dashboard and database. You can't access this!</p>
+                    <div className="modal-action">
+                        <label onClick={handleCancel} htmlFor="my-modal" className="btn btn-error text-white font-bold">Yes</label>
+                        <label onClick={() => setCancelProduct(null)} htmlFor="my-modal" className="btn btn-success text-white font-bold">No</label>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

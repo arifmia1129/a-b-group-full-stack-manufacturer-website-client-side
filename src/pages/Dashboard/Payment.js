@@ -25,9 +25,9 @@ const Payment = () => {
         address } = bookingProduct;
     return (
         <div>
-            <div class="card w-full md:w-96 border-2 mx-auto">
-                <div class="card-body">
-                    <h2 class="card-title underline">Product & Customer details:</h2>
+            <div className="card w-full md:w-96 border-2 mx-auto">
+                <div className="card-body">
+                    <h2 className="card-title underline">Product & Customer details:</h2>
                     <p><span className="font-bold">Product:</span> {product}</p>
                     <p><span className="font-bold">Quantity:</span> {orderQuantity}</p>
                     <p><span className="font-bold">Total Price:</span> {totalPrice}</p>
@@ -38,7 +38,7 @@ const Payment = () => {
                 </div>
             </div>
             <div className='w-full md:w-96 border-2 p-1 lg:p-5 mx-auto my-5 rounded-lg'>
-                <h2 class="card-title underline mb-5">Confirm your payment:</h2>
+                <h2 className="card-title underline mb-5">Confirm your payment:</h2>
                 <Elements stripe={stripePromise}>
                     <CheckoutForm bookingProduct={bookingProduct} />
                 </Elements>

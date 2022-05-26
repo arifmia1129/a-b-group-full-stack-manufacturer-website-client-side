@@ -20,8 +20,18 @@ import AddProduct from './pages/Dashboard/AddProduct';
 import ManageProducts from './pages/Dashboard/ManageProducts';
 import ManageAllOrders from './pages/Dashboard/ManageAllOrders';
 import Blogs from './pages/Blogs';
+import MyPortfolio from './pages/MyPortfolio';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from "./firebase.init";
+import useAdmin from './hooks/useAdmin';
+import Spinner from './pages/Shared/Spinner';
 
 function App() {
+  const [user, loading] = useAuthState(auth);
+  const [admin, aLoading] = useAdmin(user);
+  if (loading || aLoading) {
+    return <Spinner />
+  }
   return (
     <div className='max-w-7xl mx-auto px-2'>
       <Navbar>
@@ -32,7 +42,7 @@ function App() {
               <Dashboard />
             </RequireAuth>
           }>
-            <Route index element={<MyOrders />} />
+            <Route path='/dashboard/my-orders' element={<MyOrders />} />
             <Route path="/dashboard/add-review" element={<AddReview />} />
             <Route path="/dashboard/add-product" element={<RequireAdmin><AddProduct /></RequireAdmin>} />
             <Route path="/dashboard/manage-products" element={<RequireAdmin><ManageProducts /></RequireAdmin>} />
@@ -51,7 +61,7 @@ function App() {
             </RequireAuth>
           } />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/my-portfolio" element={<MyPortfolio />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />

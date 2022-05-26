@@ -16,7 +16,7 @@ const Order = ({ bookingProduct, index, setCancelProduct }) => {
                 <>
                     <div className="flex justify-center items-center">
                         <div>
-                            <label onClick={handleCancel} for="my-modal" class="btn btn-xs btn-accent text-white font-bold modal-button">Cancel</label>
+                            <label onClick={handleCancel} htmlFor="my-modal" className="btn btn-xs btn-accent text-white font-bold modal-button">Cancel</label>
                             <button onClick={() => navigate(`/payment/${_id}`)} className='btn btn-error btn-xs ml-2 font-bold text-white mx-auto'>Pay</button>
                         </div>
                     </div>
@@ -29,7 +29,7 @@ const Order = ({ bookingProduct, index, setCancelProduct }) => {
                 </>
             }
             </td>
-        </tr>
+        </tr >
     );
 };
 

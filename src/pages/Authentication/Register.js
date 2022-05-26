@@ -20,10 +20,10 @@ const Register = () => {
     const navigate = useNavigate();
     const [token] = useToken(user || gUser);
     useEffect(() => {
-        if (user || gUser) {
+        if (token && user && gUser) {
             navigate("/");
         }
-    }, [user, gUser, navigate])
+    }, [token, navigate, user, gUser])
 
     if (loading || gLoading || updating) {
         return <Spinner />
@@ -37,16 +37,16 @@ const Register = () => {
     };
     return (
         <div className='mt-10'>
-            <div class="card w-full lg:w-96 mx-auto shadow-xl">
-                <div class="card-body p-3 md:p-10">
+            <div className="card w-full lg:w-96 mx-auto shadow-xl">
+                <div className="card-body p-3 md:p-10">
                     <h3 className="text-2xl text-primary font-bold text-center">Register</h3>
 
 
                     <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <div class="form-control  max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Name</span>
+                        <div className="form-control  max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
                             </label>
                             <input
                                 {...register("name", {
@@ -55,16 +55,16 @@ const Register = () => {
                                         message: 'Name field is required'
                                     }
                                 })}
-                                type="text" placeholder="Enter your full name" class="input input-bordered  max-w-xs" />
-                            <label class="label">
-                                <span class="label-text-alt text-red-500">
+                                type="text" placeholder="Enter your full name" className="input input-bordered  max-w-xs" />
+                            <label className="label">
+                                <span className="label-text-alt text-red-500">
                                     {errors?.name?.message}
                                 </span>
                             </label>
                         </div>
-                        <div class="form-control  max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                        <div className="form-control  max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
                             <input
                                 {...register("email", {
@@ -77,16 +77,16 @@ const Register = () => {
                                         message: 'Enter a valid email'
                                     }
                                 })}
-                                type="email" placeholder="Enter your valid email" class="input input-bordered  max-w-xs" />
-                            <label class="label">
-                                <span class="label-text-alt text-red-500">
+                                type="email" placeholder="Enter your valid email" className="input input-bordered  max-w-xs" />
+                            <label className="label">
+                                <span className="label-text-alt text-red-500">
                                     {errors?.email?.message}
                                 </span>
                             </label>
                         </div>
-                        <div class="form-control  max-w-xs">
-                            <label class="label">
-                                <span class="label-text">Password</span>
+                        <div className="form-control  max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Password</span>
                             </label>
                             <input
                                 {...register("password", {
@@ -100,9 +100,9 @@ const Register = () => {
                                     }
 
                                 })}
-                                type="password" placeholder="Enter password" class="input input-bordered  max-w-xs" />
-                            <label class="label">
-                                <span class="label-text-alt text-red-500">
+                                type="password" placeholder="Enter password" className="input input-bordered  max-w-xs" />
+                            <label className="label">
+                                <span className="label-text-alt text-red-500">
                                     {errors?.password?.message}
                                 </span>
                             </label>
@@ -111,7 +111,7 @@ const Register = () => {
                         <input className='input input-bordered w-full max-w-xs btn bg-gradient-to-r from-secondary to-primary cursor-pointer text-white border-0' type="submit" value="Register" />
                     </form>
                     <p className='text-center'><small>Already have an account? <Link to="/login"><span className='text-primary font-bold'>Login now!</span></Link></small></p>
-                    <div class="divider">OR</div>
+                    <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
                         className='btn btn-outline btn-success hover:bg-gradient-to-r from-secondary to-primary'>Continue with google</button>

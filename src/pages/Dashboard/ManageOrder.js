@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import axiosPrivate from '../../api/axiosPrivate';
 
-const ManageOrder = ({ bookingProduct, index, refetch }) => {
+const ManageOrder = ({ bookingProduct, index, refetch, setDeleteProduct }) => {
     const { product, orderQuantity, totalPrice, status, tnxId, _id } = bookingProduct;
     const handleShip = () => {
         axiosPrivate.put(`http://localhost:5000/booking/${_id}`, { status: "shipped" })
@@ -22,6 +22,9 @@ const ManageOrder = ({ bookingProduct, index, refetch }) => {
                 }
             })
     }
+    const handleDelete = () => {
+        setDeleteProduct(bookingProduct);
+    }
 
     return (
         <tr>
@@ -31,9 +34,13 @@ const ManageOrder = ({ bookingProduct, index, refetch }) => {
             <td>{totalPrice}</td>
             <td>{(!status && !tnxId) ?
                 <>
-                    <p className='text-white font-bold rounded-lg bg-orange-500 border p-1 text-center w-fit mx-auto'>
-                        <small>unpaid</small>
-                    </p>
+                    <div className='flex justify-center items-center'>
+                        <p className='text-white font-bold rounded-lg bg-orange-500 border p-1 text-center w-fit'>
+                            <small>unpaid</small>
+                        </p>
+                        <label onClick={handleDelete} htmlFor="confirm-delete-modal" className="btn btn-xs btn-accent text-white font-bold modal-button">Delete</label>
+
+                    </div>
                 </>
                 :
                 <>
@@ -47,7 +54,7 @@ const ManageOrder = ({ bookingProduct, index, refetch }) => {
                 </>
             }
             </td>
-        </tr>
+        </tr >
     );
 };
 

@@ -64,37 +64,37 @@ const MyProfile = () => {
             </div>
             {editStatus && <form onSubmit={handleSubmit(onSubmit)}>
                 <h3 className="text-2xl text-primary font-bold mb-2 ">Edit or Add:</h3>
-                <div class="form-control  max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Education</span>
+                <div className="form-control  max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Education</span>
                     </label>
                     <input
                         {...register("education")}
-                        defaultValue={education} type="text" placeholder="Enter last education qualification" class="input input-bordered  max-w-xs" />
+                        defaultValue={education} type="text" placeholder="Enter last education qualification" className="input input-bordered  max-w-xs" />
                 </div>
-                <div class="form-control  max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Address</span>
+                <div className="form-control  max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Address</span>
                     </label>
                     <input
                         {...register("address")}
-                        defaultValue={address} type="text" placeholder="Enter current address" class="input input-bordered  max-w-xs" />
+                        defaultValue={address} type="text" placeholder="Enter current address" className="input input-bordered  max-w-xs" />
                 </div>
-                <div class="form-control  max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Phone</span>
+                <div className="form-control  max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Phone</span>
                     </label>
                     <input
                         {...register("phone")}
-                        defaultValue={phone} type="number" placeholder="Enter phone number" class="input input-bordered  max-w-xs" />
+                        defaultValue={phone} type="number" placeholder="Enter phone number" className="input input-bordered  max-w-xs" />
                 </div>
-                <div class="form-control  max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Linkedin</span>
+                <div className="form-control  max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Linkedin</span>
                     </label>
                     <input
                         {...register("linkedin")}
-                        defaultValue={linkedin} type="text" placeholder="Enter linkedin profile link" class="input input-bordered  max-w-xs" />
+                        defaultValue={linkedin} type="text" placeholder="Enter linkedin profile link" className="input input-bordered  max-w-xs" />
                 </div>
                 <input className='btn btn-primary font-bold text-white mt-5' type="submit" value="Save" />
             </form>}

@@ -51,32 +51,32 @@ const AddProduct = () => {
             <div className='lg:px-72'>
                 <h3 className="text-2xl text-primary font-bold mb-2">Add a new product:</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div class="form-control  max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Product Image</span>
+                    <div className="form-control  max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Product Image</span>
                         </label>
                         <input
                             {...register("image", {
 
 
                             })}
-                            type="file" placeholder="Enter product name" class="input input-bordered max-w-xs pt-2 text-sm" />
+                            type="file" placeholder="Enter product name" className="input input-bordered max-w-xs pt-2 text-sm" />
 
                     </div>
-                    <div class="form-control  max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Image Link</span>
+                    <div className="form-control  max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Image Link</span>
                         </label>
                         <input
                             {...register("imgLink", {
 
                             })}
-                            type="text" placeholder="Enter image link here" class="input input-bordered max-w-xs" />
+                            type="text" placeholder="Enter image link here" className="input input-bordered max-w-xs" />
 
                     </div>
-                    <div class="form-control  max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Product Name</span>
+                    <div className="form-control  max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Product Name</span>
                         </label>
                         <input
 
@@ -87,16 +87,16 @@ const AddProduct = () => {
                                 },
 
                             })}
-                            type="text" placeholder="Enter product name" class="input input-bordered max-w-xs" />
-                        <label class="label">
-                            <span class="label-text-alt text-red-500">
+                            type="text" placeholder="Enter product name" className="input input-bordered max-w-xs" />
+                        <label className="label">
+                            <span className="label-text-alt text-red-500">
                                 {errors?.name?.message}
                             </span>
                         </label>
                     </div>
-                    <div class="form-control  max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Description</span>
+                    <div className="form-control  max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Description</span>
                         </label>
                         <input
 
@@ -107,16 +107,16 @@ const AddProduct = () => {
                                 },
 
                             })}
-                            type="text" placeholder="Enter product description" class="input input-bordered max-w-xs" />
-                        <label class="label">
-                            <span class="label-text-alt text-red-500">
+                            type="text" placeholder="Enter product description" className="input input-bordered max-w-xs" />
+                        <label className="label">
+                            <span className="label-text-alt text-red-500">
                                 {errors?.des?.message}
                             </span>
                         </label>
                     </div>
-                    <div class="form-control max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Minimum Quantity</span>
+                    <div className="form-control max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Minimum Quantity</span>
                         </label>
                         <input
 
@@ -127,16 +127,16 @@ const AddProduct = () => {
                                 },
 
                             })}
-                            type="number" placeholder="Enter minimum quantity" class="input input-bordered max-w-xs" />
-                        <label class="label">
-                            <span class="label-text-alt text-red-500">
+                            type="number" placeholder="Enter minimum quantity" className="input input-bordered max-w-xs" />
+                        <label className="label">
+                            <span className="label-text-alt text-red-500">
                                 {errors?.minimum?.message}
                             </span>
                         </label>
                     </div>
-                    <div class="form-control  max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Available quantity</span>
+                    <div className="form-control  max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Available quantity</span>
                         </label>
                         <input
 
@@ -147,16 +147,16 @@ const AddProduct = () => {
                                 },
 
                             })}
-                            type="number" placeholder="Enter available quantity" class="input input-bordered max-w-xs" />
-                        <label class="label">
-                            <span class="label-text-alt text-red-500">
+                            type="number" placeholder="Enter available quantity" className="input input-bordered max-w-xs" />
+                        <label className="label">
+                            <span className="label-text-alt text-red-500">
                                 {errors?.quantity?.message}
                             </span>
                         </label>
                     </div>
-                    <div class="form-control  max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Price</span>
+                    <div className="form-control  max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Price</span>
                         </label>
                         <input
 
@@ -167,9 +167,9 @@ const AddProduct = () => {
                                 },
 
                             })}
-                            type="number" placeholder="Enter product price" class="input input-bordered max-w-xs" />
-                        <label class="label">
-                            <span class="label-text-alt text-red-500">
+                            type="number" placeholder="Enter product price" className="input input-bordered max-w-xs" />
+                        <label className="label">
+                            <span className="label-text-alt text-red-500">
                                 {errors?.price?.message}
                             </span>
                         </label>

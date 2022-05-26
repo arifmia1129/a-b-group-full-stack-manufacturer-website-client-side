@@ -1,11 +1,18 @@
 import React from 'react';
 import axiosPrivate from '../../api/axiosPrivate';
+import { toast } from 'react-toastify';
 
 const User = ({ index, user, refetch }) => {
     const { email, role } = user;
     const handleMakeAdmin = () => {
         axiosPrivate.put(`http://localhost:5000/user`, { role: "admin", email })
-        refetch();
+            .then(res => {
+                if (res?.data?.result?.acknowledged && res?.data?.result?.modifiedCount) {
+                    toast.success("Make admin success!");
+                    refetch();
+                }
+            })
+
     }
     return (
         <tr>

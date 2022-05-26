@@ -5,36 +5,36 @@ const UserSubscribe = () => {
     return (
         <div className='my-10'>
             <h3 className='font-bold text-primary text-2xl mb-2'>Subscribe:</h3>
-            <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
-                <div class="card-body">
+            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
+                <div className="card-body">
                     <h3 className='font-bold text-primary text-xl mb-2 text-center'>Get in touch:</h3>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Name</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Name</span>
                         </label>
-                        <input type="text" placeholder="name" class="input input-bordered" />
+                        <input type="text" placeholder="name" className="input input-bordered" />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Email</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
                         </label>
-                        <input type="text" placeholder="email" class="input input-bordered" />
+                        <input type="text" placeholder="email" className="input input-bordered" />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Phone</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Phone</span>
                         </label>
-                        <input type="text" placeholder="phone" class="input input-bordered" />
+                        <input type="text" placeholder="phone" className="input input-bordered" />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Message</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Message</span>
                         </label>
-                        <textarea class="textarea textarea-bordered" placeholder="message"></textarea>
+                        <textarea className="textarea textarea-bordered" placeholder="message"></textarea>
                     </div>
 
-                    <div class="form-control mt-6">
-                        <button class="btn btn-secondary text-white">Submit</button>
+                    <div className="form-control mt-6">
+                        <button className="btn btn-secondary text-white">Submit</button>
                     </div>
                 </div>
             </div>

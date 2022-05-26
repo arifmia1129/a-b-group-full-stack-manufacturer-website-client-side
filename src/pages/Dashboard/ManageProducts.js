@@ -19,7 +19,7 @@ const ManageProducts = () => {
     return (
         <div>
             <h3 className="text-2xl text-primary font-bold mb-2">Manage Products</h3>
-            <table class="table w-full">
+            <table className="table w-full">
 
                 <thead>
                     <tr>
