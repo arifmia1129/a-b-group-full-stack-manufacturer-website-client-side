@@ -31,6 +31,8 @@ const Navbar = ({ children }) => {
                                 </li>
                             }
 
+                            <li><NavLink to="/blogs" className={({ isActive }) =>
+                                isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>Blogs</NavLink></li>
                             <li><NavLink to="/about" className={({ isActive }) =>
                                 isActive ? "bg-gradient-to-r from-secondary to-primary font-fold text-white rounded-lg" : ""}>About</NavLink></li>
                             {

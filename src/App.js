@@ -19,6 +19,7 @@ import MakeAdmin from './pages/Dashboard/MakeAdmin';
 import AddProduct from './pages/Dashboard/AddProduct';
 import ManageProducts from './pages/Dashboard/ManageProducts';
 import ManageAllOrders from './pages/Dashboard/ManageAllOrders';
+import Blogs from './pages/Blogs';
 
 function App() {
   return (
@@ -49,6 +50,8 @@ function App() {
               <Payment />
             </RequireAuth>
           } />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
