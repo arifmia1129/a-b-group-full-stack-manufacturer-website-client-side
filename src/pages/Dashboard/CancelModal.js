@@ -54,7 +54,7 @@ const CancelModal = ({ cancelProduct, setCancelProduct, refetch }) => {
             <div class="modal">
                 <div class="modal-box">
                     <h3 class="font-bold text-lg text-error">Are you sure cancel this order?</h3>
-                    <p class="py-4">This order is permanently delete from you dashboard and your database. You can't access this!</p>
+                    <p class="py-4">This order is permanently delete from your dashboard and database. You can't access this!</p>
                     <div class="modal-action">
                         <label onClick={handleCancel} for="my-modal" class="btn btn-error text-white font-bold">Yes</label>
                         <label onClick={() => setCancelProduct(null)} for="my-modal" class="btn btn-success text-white font-bold">No</label>
