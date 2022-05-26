@@ -1,5 +1,4 @@
 import React from 'react';
-import { AiFillStar } from 'react-icons/ai';
 const Review = ({ singleReview, index }) => {
     const { userName, rating, review } = singleReview;
     let bgColor;
@@ -9,7 +8,7 @@ const Review = ({ singleReview, index }) => {
     else {
         bgColor = "bg-secondary";
     }
-    const { reviewer, reviewText } = review;
+
     return (
 
         <div className={`card ${bgColor} mx-2 md:w-96 w-48 h-full text-white`}>

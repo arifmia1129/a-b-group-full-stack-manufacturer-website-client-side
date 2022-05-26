@@ -10,12 +10,12 @@ const stripePromise = loadStripe('pk_test_51L0drqHjlyVvU0H8WCq85L5S01GNgzi6FPnNq
 
 const Payment = () => {
     const { id } = useParams();
-    const { bookingProduct, refetch, isLoading } = useBooking(id);
+    const { bookingProduct, isLoading } = useBooking(id);
 
     if (isLoading) {
         return <Spinner />
     }
-    const { productId,
+    const {
         product,
         orderQuantity,
         totalPrice,

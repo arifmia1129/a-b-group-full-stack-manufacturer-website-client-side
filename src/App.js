@@ -21,17 +21,8 @@ import ManageProducts from './pages/Dashboard/ManageProducts';
 import ManageAllOrders from './pages/Dashboard/ManageAllOrders';
 import Blogs from './pages/Blogs';
 import MyPortfolio from './pages/MyPortfolio';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from "./firebase.init";
-import useAdmin from './hooks/useAdmin';
-import Spinner from './pages/Shared/Spinner';
 
 function App() {
-  const [user, loading] = useAuthState(auth);
-  const [admin, aLoading] = useAdmin(user);
-  if (loading || aLoading) {
-    return <Spinner />
-  }
   return (
     <div className='max-w-7xl mx-auto px-2'>
       <Navbar>

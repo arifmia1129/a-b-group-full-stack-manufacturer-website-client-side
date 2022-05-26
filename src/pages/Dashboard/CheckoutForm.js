@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosPrivate from "../../api/axiosPrivate";
 import {
-  CardElement, Elements, ElementsConsumer,
+  CardElement,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
@@ -12,10 +12,7 @@ const CheckoutForm = ({ bookingProduct }) => {
     product,
     orderQuantity,
     totalPrice,
-    user,
-    name,
-    phone,
-    address } = bookingProduct;
+    user } = bookingProduct;
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState("");
